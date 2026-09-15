@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>السيد زيـدان — مهندس منتجات ذكاء اصطناعي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#000000;
+  --p1:#52057B; --p2:#892CDC; --p3:#BC6FF1;
+  --grad:linear-gradient(135deg,#52057B 0%,#892CDC 50%,#BC6FF1 100%);
+  --grad-h:linear-gradient(135deg,#6a0a9c 0%,#a03df0 50%,#d0a1ff 100%);
+  --panel:rgba(82,5,123,.10);
+  --panel-2:rgba(137,44,220,.14);
+  --border:rgba(188,111,241,.16);
+  --border-strong:rgba(188,111,241,.38);
+  --t1:#ffffff;
+  --t2:rgba(255,255,255,.72);
+  --t3:rgba(255,255,255,.5);
+  --t4:rgba(255,255,255,.32);
+  --glow:0 0 30px rgba(137,44,220,.45);
+  --glow-sm:0 0 14px rgba(137,44,220,.3);
+  --shadow:0 24px 60px rgba(0,0,0,.65);
+  --shadow-sm:0 10px 34px rgba(0,0,0,.5);
+  --ease:cubic-bezier(.4,0,.2,1);
+  --font:'Cairo',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--t1);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(720px 520px at 12% -4%,rgba(82,5,123,.55),transparent 60%),
+             radial-gradient(820px 600px at 92% 12%,rgba(137,44,220,.26),transparent 60%),
+             radial-gradient(980px 720px at 50% 118%,rgba(188,111,241,.14),transparent 62%);
+}
+section,footer{position:relative;z-index:1}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:0s!important;animation-delay:0s!important;transition-duration:0s!important}}
+img{max-width:100%;display:block}
+a{color:var(--p3);text-decoration:none;transition:color .2s var(--ease)}
+a:hover{color:#dcb6ff}
+button{font-family:var(--font);cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+@media(max-width:640px){.wrap{padding:0 16px}}
+.grad{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* --- NAV --- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 24px}
+.nav-in{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-size:20px;font-weight:800;letter-spacing:-.02em;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-logo:hover{filter:brightness(1.2)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:var(--t2);font-size:15px;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.on{color:var(--p3)}
+.nav-progress{position:absolute;bottom:0;left:0;height:2px;background:var(--grad);transition:width .15s;width:0;box-shadow:0 0 10px var(--p2)}
+.nav-mob{display:none;background:none;border:none;color:var(--t1);font-size:24px;padding:4px}
+@media(max-width:640px){.nav-mob{display:block}.nav-links{position:fixed;top:64px;left:0;right:0;background:rgba(0,0,0,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);flex-direction:column;padding:24px;gap:20px;border-bottom:1px solid var(--border);transform:translateY(-120%);transition:transform .3s var(--ease)}.nav-links.open{transform:none}}
+
+/* --- HERO --- */
+.hero{min-height:100vh;display:flex;align-items:center;padding:110px 0 60px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.hero-label{font-size:18px;color:var(--t2);margin-bottom:12px}
+.hero-label span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-name{font-size:clamp(38px,6vw,70px);font-weight:800;line-height:1.25;letter-spacing:-.02em;margin-bottom:20px}
+.hero-sub{font-size:16px;color:var(--t2);max-width:520px;margin-bottom:28px;line-height:1.8}
+.hero-type{font-size:clamp(26px,4vw,46px);font-weight:800;margin-bottom:32px}
+.hero-type .cur{color:var(--p3);animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.hero-badge{padding:8px 16px;border-radius:40px;border:1px solid var(--border-strong);font-size:13px;font-weight:600;color:var(--t1);background:rgba(137,44,220,.12);box-shadow:inset 0 0 12px rgba(137,44,220,.12)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:12px 26px;border-radius:40px;border:1px solid var(--border);background:rgba(82,5,123,.15);color:var(--t1);font-size:14px;font-weight:700;transition:all .22s var(--ease)}
+.btn:hover{border-color:var(--p3);color:var(--p3);box-shadow:var(--glow-sm)}
+.btn.primary{background:var(--grad);border:none;color:#fff}
+.btn.primary:hover{box-shadow:var(--glow);transform:translateY(-1px);color:#fff}
+.hero-visual{display:flex;align-items:center;justify-content:center;position:relative}
+.hero-orb{position:relative;width:min(360px,100%);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 34% 28%,#d09bff,#a03df0 34%,#52057B 72%,#160022 100%);
+  box-shadow:0 0 70px rgba(137,44,220,.5),0 0 160px rgba(82,5,123,.55),inset 0 0 46px rgba(0,0,0,.55)}
+.hero-orb::after{content:'';position:absolute;inset:14%;border-radius:50%;border:1px solid rgba(255,255,255,.18)}
+.orb-track{position:absolute;inset:-24px;animation:spin 16s linear infinite}
+.orb-track::after{content:'';position:absolute;inset:0;border-radius:50%;border:1px solid rgba(188,111,241,.3);box-shadow:0 0 20px rgba(137,44,220,.25)}
+.orb-dot{position:absolute;top:50%;left:-8px;width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,#BC6FF1,#892CDC);box-shadow:0 0 20px #BC6FF1}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:768px){.hero-grid{grid-template-columns:1fr;text-align:center}.hero-visual{order:2;margin-top:36px}.hero-sub{margin-left:auto;margin-right:auto}.hero-badges,.hero-cta{justify-content:center}}
+
+/* --- ABOUT --- */
+.about{padding:100px 0}
+.about-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
+.about-text h2{font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:16px}
+.about-text p{color:var(--t2);font-size:15px;line-height:1.9;margin-bottom:16px}
+.about-text strong{color:var(--t1)}
+.about-langs{display:flex;flex-direction:column;gap:12px}
+.lang-chip{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:14px;background:var(--panel);border:1px solid var(--border);transition:border-color .2s,box-shadow .2s}
+.lang-chip:hover{border-color:var(--border-strong);box-shadow:var(--glow-sm)}
+.lang-chip .flag{font-size:22px}
+.lang-chip .info{flex:1;text-align:right}
+.lang-chip .info b{font-size:14px;font-weight:700}
+.lang-chip .info small{font-size:12px;color:var(--t3)}
+.lang-chip .lvl{font-size:12px;font-weight:700;color:var(--p3);text-transform:uppercase;letter-spacing:.06em}
+@media(max-width:768px){.about-inner{grid-template-columns:1fr}}
+
+/* --- SECTION HEADERS --- */
+.projects,.skills,.achievements{padding:100px 0}
+.section-label{font-size:14px;font-weight:700;color:var(--p3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.section-title{font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:48px}
+
+/* --- PROJECTS --- */
+.proj{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:80px}
+.proj.reverse{direction:ltr}
+.proj-label{font-size:14px;font-weight:600;color:var(--p3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em}
+.proj-title{font-size:clamp(24px,3vw,34px);font-weight:800;margin-bottom:16px}
+.proj-desc{background:linear-gradient(135deg,rgba(82,5,123,.16),rgba(137,44,220,.1));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:16px;padding:24px 28px;border:1px solid var(--border);box-shadow:var(--shadow-sm);margin-bottom:16px}
+.proj-desc p{color:var(--t2);font-size:15px;line-height:1.9}
+.proj-frame{background:#0b0014;border-radius:16px;padding:8px;box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(188,111,241,.12)}
+.proj-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--t1);transition:color .2s}
+.proj-link:hover{color:var(--p3)}
+.proj-link svg{width:20px;height:20px}
+@media(max-width:768px){.proj{grid-template-columns:1fr;gap:24px}.proj.reverse{direction:rtl}}
+
+/* CuTime centered showcase */
+.proj.cutime{display:block;text-align:center}
+.cutime-head{max-width:640px;margin:0 auto 40px}
+.proj.cutime .proj-title{margin-bottom:18px}
+
+/* CuTime phone gallery */
+.cu-phone{display:flex;flex-direction:column;align-items:center;gap:10px;width:min(250px,100%);margin-inline:auto}
+.gal{position:relative;width:100%;aspect-ratio:720/1600;min-height:480px;border-radius:36px;border:6px solid #171123;background:#000;overflow:hidden;touch-action:pan-y;-webkit-user-select:none;user-select:none;box-shadow:0 0 0 1px rgba(188,111,241,.22),0 22px 48px rgba(82,5,123,.45),inset 0 0 40px rgba(0,0,0,.55)}
+.gal img.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;opacity:0;transform:scale(1.02);transition:opacity .45s var(--ease),transform .6s var(--ease);z-index:1}
+.gal img.slide.on{opacity:1;transform:none}
+.gal .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:40px;opacity:.4;z-index:0}
+.gal-arr{position:absolute;top:46%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:rgba(0,0,0,.6);color:var(--t1);font-size:18px;cursor:pointer;font-weight:900;z-index:3;transition:transform .2s,background .2s,box-shadow .2s}
+.gal-arr:hover{transform:translateY(-50%) scale(1.1);background:rgba(82,5,123,.85);box-shadow:var(--glow-sm)}
+.gal-arr.p{right:5px}.gal-arr.n{left:5px}
+.cu-meta{display:flex;flex-direction:column;align-items:center;gap:7px;width:100%}
+.gal-cnt{font-size:12px;font-weight:800;color:var(--t2);font-variant-numeric:tabular-nums}
+.gal-bar{display:block;width:100%;height:3px;background:rgba(188,111,241,.16);border-radius:3px;overflow:hidden}
+.gal-bar i{display:block;height:100%;width:0;background:var(--grad);transition:width .4s var(--ease);box-shadow:0 0 10px var(--p2)}
+.gal-thumbs{display:flex;gap:6px;overflow-x:auto;width:100%;padding:4px 0;scrollbar-width:none}
+.gal-thumbs::-webkit-scrollbar{display:none}
+.g-thumb{width:36px;height:78px;flex:none;border-radius:8px;object-fit:cover;object-position:top;cursor:pointer;border:2px solid transparent;opacity:.45;transition:opacity .2s,border-color .2s;background:#0b0014}
+.g-thumb:hover{opacity:.85}
+.g-thumb.on{border-color:var(--p3);opacity:1;box-shadow:0 0 12px rgba(137,44,220,.5)}
+.cu-discover{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;border-radius:40px;background:var(--grad);color:#fff;font-size:12px;font-weight:700;transition:transform .2s,box-shadow .2s}
+.cu-discover:hover{transform:translateY(-2px);box-shadow:var(--glow);color:#fff}
+
+/* Wassela */
+.wa-img{width:100%;aspect-ratio:590/300;object-fit:cover;border-radius:14px;border:1px solid var(--border);box-shadow:var(--shadow-sm);background:#160022}
+.wa-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.wa-chip{padding:5px 12px;border-radius:8px;font-size:12px;font-weight:700;background:rgba(137,44,220,.14);color:var(--p3);border:1px solid var(--border-strong)}
+
+/* --- PIPELINE --- */
+.pipe-wrap{background:#0b0014;border-radius:14px;padding:20px;border:1px solid var(--border);font-family:'Courier New',monospace;font-size:13px;line-height:2;min-height:180px}
+.pipe-wrap .line{opacity:0;transform:translateY(8px);transition:all .4s var(--ease)}
+.pipe-wrap .line.on{opacity:1;transform:none}
+.pipe-wrap .ar{color:var(--p3);font-weight:700}
+.pipe-wrap .ok{color:#4ade80;font-weight:700}
+.pipe-cta{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+
+/* --- GIFT SIEGE --- */
+.gs-stage{background:#0b0014;border-radius:14px;padding:20px;border:1px solid var(--border);display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;min-height:200px;box-shadow:var(--shadow-sm)}
+.gs-hud{grid-column:1/-1;display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--t3);padding-bottom:10px;border-bottom:1px solid var(--border)}
+.gs-info{text-align:center}
+.gs-info .l{font-size:10px;color:var(--t4);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.gs-info .n{font-size:28px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--p3);text-shadow:0 0 16px rgba(137,44,220,.5)}
+.gs-gift{font-size:48px;text-align:center;grid-column:1/-1;transition:transform .3s var(--ease)}
+.gs-gift.pop{transform:scale(1.3)}
+.gs-eng{text-align:center;grid-column:1/-1}
+.gs-eng .state{display:inline-block;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:800;background:rgba(137,44,220,.16);color:var(--p3);border:1px solid var(--border);margin-top:4px}
+.gs-field{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;grid-column:1/-1;min-height:40px}
+.gs-enemy{font-size:20px;transition:transform .3s var(--ease);animation:popIn .3s var(--ease)}
+@keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.gs-log{margin-top:10px;font-size:12px;color:var(--t3);font-family:'Courier New',monospace;max-height:80px;overflow-y:auto}
+.gs-log div{padding:2px 0;border-bottom:1px solid rgba(188,111,241,.08)}
+@media(max-width:640px){.gs-stage{grid-template-columns:1fr}.gs-info{text-align:left}}
+
+/* --- SKILLS --- */
+.skill-toggle{display:flex;gap:0;margin-bottom:32px;border:1px solid var(--border-strong);border-radius:40px;overflow:hidden;width:fit-content;background:rgba(82,5,123,.1)}
+.skill-toggle button{padding:10px 24px;border:none;background:transparent;color:var(--t3);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+.skill-toggle button.on{background:var(--grad);color:#fff}
+.radar-wrap{display:flex;justify-content:center;margin-bottom:32px}
+.radar-wrap svg{max-width:440px;width:100%}
+.skill-bars{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.skill-bar{background:var(--panel);border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+.skill-bar .top{display:flex;justify-content:space-between;margin-bottom:6px}
+.skill-bar .name{font-size:13px;font-weight:700}
+.skill-bar .pct{font-size:12px;color:var(--p3);font-weight:800}
+.skill-bar .track{height:5px;background:rgba(188,111,241,.14);border-radius:3px;overflow:hidden}
+.skill-bar .fill{height:100%;background:var(--grad);border-radius:3px;transition:width 1.2s var(--ease);width:0;box-shadow:0 0 8px rgba(137,44,220,.5)}
+.skill-list{display:none}
+.skill-list.on{display:block}
+.radar-wrap.hidden{display:none}
+@media(max-width:640px){.skill-bars{grid-template-columns:1fr}}
+
+/* --- ACHIEVEMENTS --- */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.ach-card{background:var(--panel);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform .2s var(--ease),border-color .2s,box-shadow .2s}
+.ach-card:hover{transform:translateY(-4px);border-color:var(--border-strong);box-shadow:var(--glow-sm)}
+.ach-frame{position:relative;aspect-ratio:4/3;background:#0b0014;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--border)}
+.ach-frame img{width:100%;height:100%;object-fit:contain;transition:transform .5s var(--ease)}
+.ach-card:hover .ach-frame img{transform:scale(1.02)}
+.ach-body{padding:16px 18px}
+.ach-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--p3);background:rgba(137,44,220,.14);border:1px solid var(--border-strong);padding:3px 10px;border-radius:20px;margin-bottom:8px}
+.ach-body h3{font-size:16px;font-weight:700;margin-bottom:4px}
+.ach-body p{font-size:13px;color:var(--t3)}
+.ach-card.feat{grid-column:1/-1}
+.ach-card.feat .ach-frame{aspect-ratio:330/673;max-width:360px;margin:0 auto;background:#000;border:8px solid #171123;border-radius:40px;box-shadow:var(--shadow-sm)}
+.ach-card.feat .ach-frame video{width:100%;height:100%;object-fit:cover}
+
+/* --- FOOTER --- */
+.footer{padding:60px 0;border-top:1px solid var(--border)}
+.footer-inner{text-align:center}
+.footer-inner h2{font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:12px}
+.footer-inner p{color:var(--t2);font-size:15px;max-width:520px;margin:0 auto 24px;line-height:1.8}
+.footer-email{font-size:16px;font-weight:600;color:var(--p3);transition:color .2s,text-shadow .2s}
+.footer-email:hover{color:#dcb6ff;text-shadow:0 0 16px rgba(137,44,220,.5)}
+.socials{display:flex;justify-content:center;gap:14px;margin-top:28px}
+.socials a{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(82,5,123,.14);border:1px solid var(--border-strong);transition:all .2s var(--ease)}
+.socials a:hover{background:rgba(137,44,220,.25);border-color:var(--p3);transform:translateY(-2px);box-shadow:var(--glow-sm)}
+.socials svg{width:18px;height:18px;fill:var(--t1)}
+.copyright{margin-top:32px;padding-top:24px;border-top:1px solid var(--border);font-size:13px;color:var(--t4)}
+
+/* --- MOBILE POLISH --- */
+@media(max-width:768px){
+  .hero{padding:96px 0 48px}
+  .projects,.skills,.achievements{padding:64px 0}
+  .proj{margin-bottom:56px}
+  .proj-desc{padding:18px 20px}
+  .section-title{margin-bottom:32px}
+}
+@media(max-width:640px){
+  .hero{padding-top:104px}
+  .hero-orb{width:min(240px,78%)}
+  .hero-name{font-size:clamp(30px,8vw,44px)}
+  .hero-type{font-size:clamp(20px,5.5vw,30px)}
+  .skill-toggle{display:flex;width:100%}
+  .skill-toggle button{flex:1;padding:12px 8px;font-size:12px}
+  .gs-hud{flex-wrap:wrap;gap:6px}
+  .gs-info{text-align:center}
+  .cu-discover{padding:10px 20px}
+  .ach-grid{gap:14px}
+  .ach-card.feat .ach-frame{max-width:300px}
+  .pipe-wrap{font-size:12px;padding:16px}
+  .gal-thumbs{overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+}
+@media(max-width:400px){
+  .hero-name{font-size:clamp(28px,9vw,38px)}
+  .hero-badge{padding:6px 12px;font-size:12px}
+  .nav-in{height:56px}
+  .gal-arr{width:32px;height:32px;font-size:15px}
+  .proj-title{font-size:22px}
+}
+html{-webkit-tap-highlight-color:transparent}
+button,a{touch-action:manipulation}
+
+/* --- REVEAL --- */
+[data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+[data-reveal].vis{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-in">
+    <a href="#home" class="nav-logo">ZIDANE</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">الرئيسية</a></li>
+      <li><a href="#about">نبذة عني</a></li>
+      <li><a href="#projects">المشاريع</a></li>
+      <li><a href="#skills">المهارات</a></li>
+      <li><a href="#achievements">الإنجازات</a></li>
+      <li><a href="#contact">تواصل</a></li>
+    </ul>
+    <button class="nav-mob" id="navMob" aria-label="القائمة">☰</button>
+  </div>
+  <div class="nav-progress" id="navProgress"></div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-label" data-reveal>مرحباً! أنا <span>السيد زيـدان</span></p>
+        <h1 class="hero-name" data-reveal>أبني أنظمة <span class="grad">ذكاء اصطناعي</span>,<br>منتجات رقمية<br>و&nbsp;ألعاب</h1>
+        <p class="hero-sub" data-reveal>مطوّر شامل يهتم بالمنتجات، يتجه نحو هندسة الذكاء الاصطناعي والإعلام وريادة الأعمال التقنية. مقيم في الجزائر — أعمل عبر كامل المنظومة التقنية.</p>
+        <div class="hero-type" data-reveal><span>أنا </span><span id="typeTarget"></span><span class="cur">|</span></div>
+        <div class="hero-badges" data-reveal>
+          <span class="hero-badge">Python</span>
+          <span class="hero-badge">Flutter</span>
+          <span class="hero-badge">ذكاء اصطناعي</span>
+          <span class="hero-badge">SaaS</span>
+          <span class="hero-badge">ألعاب</span>
+        </div>
+        <div class="hero-cta" data-reveal>
+          <a class="btn primary" href="#projects">استكشف أعمالي</a>
+          <a class="btn" href="#contact">تواصل معي</a>
+        </div>
+      </div>
+      <div class="hero-visual" data-reveal>
+        <div class="hero-orb">
+          <div class="orb-track"><div class="orb-dot"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="about-inner">
+      <div class="about-text" data-reveal>
+        <h2>نبذة <span class="grad">عني</span></h2>
+        <p>أنا زيـدان بركات، مطوّر أركز على بناء منتجات SaaS من الصفر. أهتم بإنشاء حلول عملية قابلة للتوسّع تحلّ مشاكل حقيقية — لا مجرد تصميم واجهات أو بناء منتجات رقمية.</p>
+        <p>حالياً، أعمل على فكرة SaaS أطوّرها من الصفر، من المفهوم والبنية الأولية حتى المنتج الفعلي والحل التجاري.</p>
+      </div>
+      <div class="about-langs" data-reveal>
+        <div class="lang-chip"><span class="flag">🇩🇿</span><div class="info"><b>العربية</b><small>اللغة الأم</small></div><span class="lvl">أصلية</span></div>
+        <div class="lang-chip"><span class="flag">🇬🇧</span><div class="info"><b>الإنجليزية</b><small>كفاءة مهنية للعمل</small></div><span class="lvl">بطلاقة</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="projects">
+  <div class="wrap">
+    <p class="section-label" data-reveal>01 — أعمال مختارة</p>
+    <h2 class="section-title" data-reveal>المشاريع التي بنيتها</h2>
+
+    <!-- CuTime -->
+    <div class="proj cutime" data-reveal>
+      <div class="cutime-head">
+        <p class="proj-label">SaaS · متعدد المستأجرين</p>
+        <h3 class="proj-title">CuTime — حجز مواعيد الحلاقين</h3>
+        <div class="proj-desc">
+          <p>منصة SaaS متعددة المستأجرين للحلاقين في الجزائر — حجوزات، تتبع للإيرادات، استبقاء العملاء، ولوحة تحكم مباشرة. الفكر: هل يخلق هذا قيمة قابلة للقياس؟ شعارك: المقياس أولاً.</p>
+        </div>
+        <a class="proj-link" href="https://cutime-dz.onrender.com/" target="_blank" rel="noopener noreferrer">اكتشف المنصة <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
+      </div>
+      <div class="cu-phone">
+        <div class="gal" id="cuStage" tabindex="0" aria-label="لقطات CuTime">
+          <span class="ph">💈</span>
+          <button class="gal-arr p" aria-label="السابق">‹</button>
+          <button class="gal-arr n" aria-label="التالي">›</button>
+        </div>
+        <div class="cu-meta">
+          <span class="gal-cnt" id="cuCnt">1 / 15</span>
+          <span class="gal-bar" aria-hidden="true"><i id="cuBar"></i></span>
+        </div>
+        <div class="gal-thumbs" id="cuThumbs"></div>
+        <a class="cu-discover" href="https://cutime-dz.onrender.com/" target="_blank" rel="noopener noreferrer">جرّب CuTime ←</a>
+      </div>
+    </div>
+
+    <!-- Wassela -->
+    <div class="proj reverse" data-reveal>
+      <div>
+        <p class="proj-label">تطبيق · Flutter</p>
+        <h3 class="proj-title">واصلة — طلب سيارات وتوصيل</h3>
+        <div class="proj-desc">
+          <p>تطبيق Flutter لطلب السيارات والتوصيل في السوق الجزائرية — جانبي السائق والراكب بالكامل يربطهما خادم Laravel واحد. الحجوزات والتتبع المباشر والمدفوعات متزامنة جميعها.</p>
+        </div>
+        <div class="wa-chips">
+          <span class="wa-chip">Flutter</span>
+          <span class="wa-chip">Laravel</span>
+          <span class="wa-chip">طلب سيارات</span>
+          <span class="wa-chip">توصيل</span>
+          <span class="wa-chip">تطبيق السائق</span>
+          <span class="wa-chip">الخرائط / Geo</span>
+        </div>
+      </div>
+      <div>
+        <div class="proj-frame">
+          <img class="wa-img" src="bid-preview.png" alt="معاينة واصلة" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Pipeline -->
+    <div class="proj" data-reveal>
+      <div>
+        <p class="proj-label">ذكاء اصطناعي · أتمتة</p>
+        <h3 class="proj-title">خط إنتاج المحتوى بالذكاء الاصطناعي</h3>
+        <div class="proj-desc">
+          <p>فهم تلقائي للفيديو ← ترجمة عربية ← تركيب صوت ← ترجمة نصية ← عرض ← نشر. بنية لإنتاج المحتوى بالذكاء الاصطناعي، وليس مجرد محرر فيديو.</p>
+        </div>
+      </div>
+      <div>
+        <div class="pipe-wrap" id="pipeLog" aria-live="polite"></div>
+        <div class="pipe-cta">
+          <button class="btn primary" id="pipeGo">شغّل الخط ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gift Siege -->
+    <div class="proj reverse" data-reveal>
+      <div>
+        <p class="proj-label">بلحظة حقيقية · ألعاب</p>
+        <h3 class="proj-title">حصار الهدايا — بث TikTok إلى قتال</h3>
+        <div class="proj-desc">
+          <p>لعبة حية متنكرة في هيئة نظام بلحظه حقيقية — هدايا المشاهدين في TikTok تُطلق أعداءً في قتال مباشر. أنظمة موزعة متنكرة في هيئة ترفيه.</p>
+        </div>
+      </div>
+      <div>
+        <div class="gs-stage" id="gs">
+          <div class="gs-hud"><span>🎥 مباشر</span><span id="gsTicker">بانتظار هدية…</span><span>🎮 المحرك</span></div>
+          <div class="gs-info"><div class="l">المشاهدون</div><div class="n" id="gsViewer">—</div></div>
+          <div class="gs-gift" id="gsGift">🎁</div>
+          <div class="gs-eng"><div class="l">محرك اللعبة</div><div class="state" id="gsState">خامل</div></div>
+          <div class="gs-field" id="gsField"></div>
+        </div>
+        <div class="pipe-cta">
+          <button class="btn primary" id="gsGo">أرسل هدية ⚡</button>
+          <button class="btn" id="gsStorm">عاصفة هدايا ×8 🌪️</button>
+        </div>
+        <div class="gs-log" id="gsLog"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills">
+  <div class="wrap">
+    <p class="section-label" data-reveal>02 — خريطة المهارات</p>
+    <h2 class="section-title" data-reveal>ما أجيده بثقة</h2>
+    <div class="skill-toggle" data-reveal>
+      <button class="on" id="modeRadar">رادار</button>
+      <button id="modeBars">قائمة المهارات</button>
+    </div>
+    <div class="radar-wrap" id="radarWrap">
+      <svg id="radarSvg" viewBox="0 0 400 400" role="img" aria-label="مخطط الرادار للمهارات"></svg>
+    </div>
+    <div class="skill-bars" id="skillBars"></div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="achievements">
+  <div class="wrap">
+    <p class="section-label" data-reveal>03 — شهادات وإنجازات</p>
+    <h2 class="section-title" data-reveal>الإنجازات</h2>
+    <div class="ach-grid">
+      <div class="ach-card feat" data-reveal>
+        <div class="ach-frame">
+          <video src="achievements/iPhone-14-PRO-cutime-dz.onrender.com-_9os20dxvr8_om.webm" poster="achievements/cutime-preview-poster.jpg" autoplay muted loop playsinline aria-label="فيديو معاينة تطبيق CuTime"></video>
+        </div>
+        <div class="ach-body">
+          <span class="ach-tag">CuTime · معاينة مباشرة</span>
+          <h3>CuTime — معاينة التطبيق</h3>
+          <p>تسجيل شاشة لمسار الحجز المباشر على cutime-dz.onrender.com.</p>
+        </div>
+      </div>
+      <div class="ach-card" data-reveal>
+        <a class="ach-frame" href="achievements/cs50-1.jpg" target="_blank" rel="noopener" aria-label="فتح شهادة CS50">
+          <img src="achievements/cs50-1.jpg" alt="شهادة CS50" loading="lazy">
+        </a>
+        <div class="ach-body">
+          <span class="ach-tag">هارفارد · CS50</span>
+          <h3>شهادة CS50</h3>
+          <p>دبلوم CS50 من جامعة هارفارد — حصلت عليه بتفوّق.</p>
+        </div>
+      </div>
+      <div class="ach-card" data-reveal>
+        <a class="ach-frame" href="achievements/cs50-2.jpg" target="_blank" rel="noopener" aria-label="فتح شهادة CS50">
+          <img src="achievements/cs50-2.jpg" alt="شهادة CS50" loading="lazy">
+        </a>
+        <div class="ach-body">
+          <span class="ach-tag">هارفارد · CS50</span>
+          <h3>شهادة CS50</h3>
+          <p>دبلوم CS50 من جامعة هارفارد — حصلت عليه بتفوّق.</p>
+        </div>
+      </div>
+      <div class="ach-card" data-reveal>
+        <a class="ach-frame" href="achievements/cutime-desktop-v.png" target="_blank" rel="noopener" aria-label="فتح لقطة سطح مكتب CuTime">
+          <img src="achievements/cutime-desktop-v.png" alt="لقطة سطح مكتب CuTime" loading="lazy">
+        </a>
+        <div class="ach-body">
+          <span class="ach-tag">SaaS · منتج</span>
+          <h3>CuTime — سطح المكتب</h3>
+          <p>لوحة تحكم متعددة المستأجرين للحلاقين الجزائريين.</p>
+        </div>
+      </div>
+      <div class="ach-card" data-reveal>
+        <a class="ach-frame" href="achievements/brave_screenshot_cutime-dz.onrender.com (1).png" target="_blank" rel="noopener" aria-label="فتح لقطة جوال CuTime">
+          <img src="achievements/brave_screenshot_cutime-dz.onrender.com (1).png" alt="لقطة جوال CuTime" loading="lazy">
+        </a>
+        <div class="ach-body">
+          <span class="ach-tag">SaaS · منتج</span>
+          <h3>CuTime — الجوال</h3>
+          <p>مسار الحجز من الجوال على المنصة المباشرة.</p>
+        </div>
+      </div>
+      <div class="ach-card" data-reveal>
+        <a class="ach-frame" href="achievements/brave_screenshot_cutime-dz.onrender.com.png" target="_blank" rel="noopener" aria-label="فتح لقطة جوال CuTime">
+          <img src="achievements/brave_screenshot_cutime-dz.onrender.com.png" alt="لقطة جوال CuTime" loading="lazy">
+        </a>
+        <div class="ach-body">
+          <span class="ach-tag">SaaS · منتج</span>
+          <h3>CuTime — الجوال</h3>
+          <p>مسار الحجز من الجوال على المنصة المباشرة.</p>
+        </div>
+      </div>
+      <div class="ach-card" data-reveal>
+        <a class="ach-frame" href="achievements/cutime-1.jpg" target="_blank" rel="noopener" aria-label="فتح لقطة CuTime">
+          <img src="achievements/cutime-1.jpg" alt="لقطة تطبيق CuTime" loading="lazy">
+        </a>
+        <div class="ach-body">
+          <span class="ach-tag">SaaS · منتج</span>
+          <h3>CuTime — منصة مباشرة</h3>
+          <p>SaaS متعدد المستأجرين لحجز مواعيد الحلاقين، يعمل في الإنتاج.</p>
+        </div>
+      </div>
+      <div class="ach-card" data-reveal>
+        <a class="ach-frame" href="achievements/cutime-2.jpg" target="_blank" rel="noopener" aria-label="فتح لقطة CuTime">
+          <img src="achievements/cutime-2.jpg" alt="لقطة تطبيق CuTime" loading="lazy">
+        </a>
+        <div class="ach-body">
+          <span class="ach-tag">SaaS · منتج</span>
+          <h3>CuTime — منصة مباشرة</h3>
+          <p>SaaS متعدد المستأجرين لحجز مواعيد الحلاقين، يعمل في الإنتاج.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact" class="footer">
+  <div class="wrap">
+    <div class="footer-inner" data-reveal>
+      <h2>تواصل معي</h2>
+      <p>أبحث حالياً عن الانضمام إلى فريق متعدد التخصصات يقدّر تحسين حياة الناس عبر تصميم سهل الوصول — أو لديك مشروع في ذهنك؟ لنتواصل.</p>
+      <a class="footer-email" href="mailto:zidanestudentcs@gmail.com">zidanestudentcs@gmail.com</a>
+      <div class="socials">
+        <a href="https://github.com/zidanebarkat" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+        <a href="https://t.me/zidanebarkat" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+        <a href="https://wa.me/213780117838" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+      </div>
+      <p class="copyright">© 2026 السيد زيـدان. جميع الحقوق محفوظة.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const init={};
+
+/* --- NAV --- */
+init.nav=()=>{
+  const links=$('#navLinks'),mob=$('#navMob'),prog=$('#navProgress');
+  mob.addEventListener('click',()=>links.classList.toggle('open'));
+  links.addEventListener('click',e=>{if(e.target.tagName==='A')links.classList.remove('open');});
+  const secs=$$('section[id],footer[id]');
+  const update=()=>{
+    const y=window.scrollY, h=document.documentElement.scrollHeight-innerHeight;
+    prog.style.width=h>0?(y/h*100)+'%':'0';
+    let current='home';
+    secs.forEach(s=>{if(y>=s.offsetTop-200) current=s.id;});
+    $$('.nav-links a').forEach(a=>{a.classList.toggle('on',a.getAttribute('href')==='#'+current);});
+  };
+  let ticking=false;
+  window.addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(()=>{update();ticking=false;});}},{passive:true});
+  update();
+};
+
+/* --- TYPE --- */
+init.type=()=>{
+  const el=$('#typeTarget');
+  const roles=['مهندس منتجات ذكاء اصطناعي','مطوّر Full-Stack','مهندس أنظمة','مفكر منتجات'];
+  let ri=0,ci=0,del=false;
+  const step=()=>{
+    const word=roles[ri];
+    if(!del){ci++;if(ci>word.length){setTimeout(()=>{del=true;step();},1600);return;}}
+    else{ci--;if(ci<0){del=false;ri=(ri+1)%roles.length;ci=0;setTimeout(step,300);return;}}
+    el.textContent=word.slice(0,ci);
+    setTimeout(step,del?60:110);
+  };
+  step();
+};
+
+/* --- REVEAL --- */
+init.reveal=()=>{
+  const els=$$('[data-reveal]');
+  if(reduced){els.forEach(el=>el.classList.add('vis'));return;}
+  const revealNow=()=>{
+    els.forEach(el=>{
+      if(!el.classList.contains('vis')&&el.getBoundingClientRect().top<innerHeight-40)el.classList.add('vis');
+    });
+  };
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});
+  },{threshold:.01,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(el=>obs.observe(el));
+  revealNow();
+  window.addEventListener('scroll',revealNow,{passive:true});
+};
+
+/* --- CU TIME GALLERY --- */
+init.gallery=()=>{
+  const SHOTS=[
+    'cutime-shots/photo_5897657630275079541_w.jpg',
+    'cutime-shots/photo_5897657630275079560_w.jpg',
+    'cutime-shots/photo_5897657630275079561_w.jpg',
+    'cutime-shots/photo_5897657630275079562_w.jpg',
+    'cutime-shots/photo_5897657630275079563_w.jpg',
+    'cutime-shots/photo_5897657630275079564_w.jpg',
+    'cutime-shots/photo_5897657630275079565_w.jpg',
+    'cutime-shots/photo_5897657630275079566_w.jpg',
+    'cutime-shots/photo_5897657630275079567_w.jpg',
+    'cutime-shots/photo_5897657630275079568_w.jpg',
+    'cutime-shots/photo_5897657630275079569_w.jpg',
+    'cutime-shots/photo_5897657630275079573_w.jpg',
+    'cutime-shots/photo_5897657630275079584_w.jpg',
+    'cutime-shots/photo_5897657630275079585_w.jpg',
+    'cutime-shots/photo_5897657630275079586_w.jpg'
+  ];
+  const stage=$('#cuStage'),thumbs=$('#cuThumbs'),cnt=$('#cuCnt'),bar=$('#cuBar'),ph=stage.querySelector('.ph');
+  const imgs=[],te=[];
+  let i=0,swipe=null;
+  SHOTS.forEach((src,idx)=>{
+    const img=new Image();img.decoding='async';img.loading=idx===0?'eager':'lazy';img.className='slide';img.alt='شاشة CuTime '+(idx+1);
+    if(idx===0)img.classList.add('on');img.src=src;stage.appendChild(img);imgs.push(img);
+    const t=new Image();t.className='g-thumb'+(idx===0?' on':'');t.width=36;t.height=78;t.alt='';t.loading='lazy';t.addEventListener('click',()=>show(idx));t.src=src;thumbs.appendChild(t);te.push(t);
+  });
+  function show(n){
+    i=(n+SHOTS.length)%SHOTS.length;
+    imgs.forEach((im,idx)=>im.classList.toggle('on',idx===i));
+    te.forEach((t,idx)=>t.classList.toggle('on',idx===i));
+    cnt.textContent=(i+1)+' / '+SHOTS.length;
+    bar.style.width=((i+1)/SHOTS.length*100)+'%';
+    if(ph)ph.style.display='none';
+  }
+  stage.querySelector('.gal-arr.p').addEventListener('click',e=>{e.stopPropagation();show(i-1);});
+  stage.querySelector('.gal-arr.n').addEventListener('click',e=>{e.stopPropagation();show(i+1);});
+  stage.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1);});
+  stage.addEventListener('pointerdown',e=>{if(e.target.closest('.gal-arr'))return;swipe=e.clientX;});
+  stage.addEventListener('pointerup',e=>{if(swipe===null)return;const dx=e.clientX-swipe;swipe=null;if(Math.abs(dx)>40)show(i+(dx<0?1:-1));});
+  show(0);
+};
+
+/* --- PIPELINE --- */
+init.pipeline=()=>{
+  const log=$('#pipeLog');
+  const lines=[
+    ()=>`جلب → <span class="ar">مصدر الفيديو</span> · تحميل الريل… <span class="ok">تم</span>`,
+    ()=>`فهم → <span class="ar">تحليل الفيديو</span> · مشاهد ✓ صوت ✓ سياق ✓ <span class="ok">تم</span>`,
+    ()=>`خطة → <span class="ar">خطة المحتوى</span> · خطاف <b>"هذا الهدف لا يُصدَّق"</b> · نص · مرئيات <span class="ok">تم</span>`,
+    ()=>`صوت → <span class="ar">صوت عربي</span> · تركيب TTS 🇩🇿 <span class="ok">طبيعي</span>`,
+    ()=>`عرض → <span class="ar">ترجمة + عرض</span> · RTL · ترميز ffmpeg <span class="ok">تم</span>`,
+    ()=>`نشر → <span class="ar">نشر</span> · منصة Shorts <span class="ok">مباشر</span>`
+  ];
+  let run=false;
+  const execute=()=>{
+    if(run)return;run=true;log.innerHTML='';
+    let i=0;
+    const next=()=>{
+      if(i>=lines.length){run=false;return;}
+      const div=document.createElement('div');
+      div.textContent=lines[i]();
+      div.innerHTML=lines[i]();
+      log.appendChild(div);
+      requestAnimationFrame(()=>div.classList.add('on'));
+      setTimeout(next,500+Math.random()*400);
+      i++;
+    };
+    next();
+  };
+  $('#pipeGo').addEventListener('click',execute);
+};
+
+/* --- GIFT SIEGE --- */
+init.giftsiege=()=>{
+  const viewer=$('#gsViewer'),state=$('#gsState'),gift=$('#gsGift'),field=$('#gsField'),log=$('#gsLog'),ticker=$('#gsTicker');
+  const enemies=['👹','👺','💀','👻','🤖','👾','🧟','🐉'];
+  const gifts=['💎','🌹','🎵','🔥','⭐','🦁','❤️','🎯'];
+  let vCount=0;
+  const addLog=msg=>{const d=document.createElement('div');d.textContent=msg;log.prepend(d);if(log.children.length>20)log.lastChild.remove();};
+  const spawn=()=>{
+    const e=document.createElement('span');e.className='gs-enemy';e.textContent=enemies[Math.random()*enemies.length|0];
+    field.appendChild(e);
+    setTimeout(()=>{if(e.parentNode){e.style.transform='scale(0)';setTimeout(()=>e.remove(),300);}},2000+Math.random()*2000);
+  };
+  const handleGift=()=>{
+    const g=gifts[Math.random()*gifts.length|0];
+    gift.textContent=g;gift.classList.add('pop');setTimeout(()=>gift.classList.remove('pop'),300);
+    vCount++;viewer.textContent=vCount;
+    state.textContent='نشط';state.style.color='var(--p3)';
+    ticker.textContent='حدث: تم استلام '+g+'!';
+    spawn();
+    addLog('هدية '+g+' → ظهر عدو');
+    setTimeout(()=>{state.textContent='خامل';state.style.color='';},1500);
+  };
+  $('#gsGo').addEventListener('click',handleGift);
+  $('#gsStorm').addEventListener('click',()=>{for(let i=0;i<8;i++)setTimeout(handleGift,i*150);});
+};
+
+/* --- SKILLS --- */
+init.skills=()=>{
+  const skills=[
+    {name:'Python',pct:70},{name:'Flutter',pct:60},{name:'Flask',pct:60},{name:'Laravel',pct:45},
+    {name:'Godot',pct:40},{name:'FFmpeg',pct:65},{name:'واجهات AI',pct:65},{name:'Linux',pct:60},
+    {name:'Git',pct:65},{name:'الأمان',pct:40},{name:'قواعد البيانات',pct:60},{name:'المنتج',pct:75}
+  ];
+  const cx=200,cy=200,r=140,n=skills.length;
+  const svg=$('#radarSvg'),barsWrap=$('#skillBars');
+  const radarWrap=$('#radarWrap');
+  const toDeg=i=>(Math.PI*2*i/n)-Math.PI/2;
+  const pt=(i,rv)=>[cx+Math.cos(toDeg(i))*rv,cy+Math.sin(toDeg(i))*rv];
+
+  [1,.75,.5,.25].forEach(s=>{
+    const pts=Array.from({length:n},(_, i)=>pt(i,r*s).join(',')).join(' ');
+    const poly=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    poly.setAttribute('points',pts);poly.setAttribute('fill','none');poly.setAttribute('stroke','rgba(188,111,241,.14)');poly.setAttribute('stroke-width','1');
+    svg.appendChild(poly);
+  });
+  skills.forEach((sk,i)=>{
+    const[x,y]=pt(i,r);
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',cx);line.setAttribute('y1',cy);line.setAttribute('x2',x);line.setAttribute('y2',y);
+    line.setAttribute('stroke','rgba(188,111,241,.12)');line.setAttribute('stroke-width','1');svg.appendChild(line);
+    const[lx,ly]=pt(i,r+22);
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',lx);t.setAttribute('y',ly);t.setAttribute('text-anchor','middle');t.setAttribute('dominant-baseline','middle');
+    t.setAttribute('fill','rgba(255,255,255,.62)');t.setAttribute('font-size','11');t.setAttribute('font-weight','700');
+    t.setAttribute('font-family','Cairo,sans-serif');t.textContent=sk.name;svg.appendChild(t);
+  });
+  const dataPts=skills.map((sk,i)=>pt(i,r*sk.pct/100).join(',')).join(' ');
+  const dataPoly=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+  dataPoly.setAttribute('points',dataPts);dataPoly.setAttribute('fill','rgba(137,44,220,.3)');dataPoly.setAttribute('stroke','#BC6FF1');dataPoly.setAttribute('stroke-width','2');
+  svg.appendChild(dataPoly);
+  skills.forEach((sk,i)=>{
+    const[x,y]=pt(i,r*sk.pct/100);
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r','4');c.setAttribute('fill','#BC6FF1');
+    svg.appendChild(c);
+  });
+
+  skills.forEach(sk=>{
+    const div=document.createElement('div');div.className='skill-bar';
+    div.innerHTML=`<div class="top"><span class="name">${sk.name}</span><span class="pct">${sk.pct}%</span></div><div class="track"><div class="fill" data-w="${sk.pct}"></div></div>`;
+    barsWrap.appendChild(div);
+  });
+
+  const radarBtn=$('#modeRadar'),barsBtn=$('#modeBars');
+  const animateFills=()=>$$('.skill-bars .fill').forEach(f=>{f.style.width='0';requestAnimationFrame(()=>requestAnimationFrame(()=>f.style.width=f.dataset.w+'%'));});
+  radarBtn.addEventListener('click',()=>{radarBtn.classList.add('on');barsBtn.classList.remove('on');radarWrap.classList.remove('hidden');barsWrap.style.display='grid';});
+  barsBtn.addEventListener('click',()=>{
+    barsBtn.classList.add('on');radarBtn.classList.remove('on');radarWrap.classList.add('hidden');barsWrap.style.display='grid';
+    setTimeout(animateFills,50);
+  });
+};
+
+/* --- BOOT --- */
+document.addEventListener('DOMContentLoaded',()=>{
+  try{init.reveal();}catch(e){}
+  try{init.nav();}catch(e){}
+  try{init.type();}catch(e){}
+  try{init.gallery();}catch(e){}
+  try{init.pipeline();}catch(e){}
+  try{init.giftsiege();}catch(e){}
+  try{init.skills();}catch(e){}
+});
+</script>
+</body>
+</html>

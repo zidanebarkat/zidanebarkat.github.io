@@ -1,0 +1,15 @@
+# non-site dev folders
+/stream/
+/piano/
+/DS/
+/Ecnomey/
+
+# local files not part of the site
+/me.md
+/disk-fix.sh
+*.crdownload
+
+# external-disk symlinks
+/yt-arb
+/test
+/eDemand*
